@@ -1,9 +1,9 @@
 .messages {
     background-color: lightgray;
+    height: 400px;
     display: flex;
     flex-direction: column;
-    height: 50%;
-    width: 100%;
+    width: 60%;
     padding: 20px;
     overflow-y: scroll;
 }

@@ -8,6 +8,6 @@ export default {
     },
     author: {
         color: 'gray',
-        fontSize: '14px'
+        fontSize: '10px'
     }
 };

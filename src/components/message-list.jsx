@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../styles/MessageList.css';
 
-import Message from './Message';
+import Message from './message';
 
 export default class MessageList extends React.Component {
     static propTypes = {
@@ -11,7 +11,7 @@ export default class MessageList extends React.Component {
     };
 
     static defaultProps = {
-        messages: ["hi"]
+        messages: []
     };
 
     render() {

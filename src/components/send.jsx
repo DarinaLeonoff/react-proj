@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/form.css';
+
 import { TextField } from 'material-ui';
+import { FlatButton } from 'material-ui';
+
+
+
 
 export default class SendMessage extends React.Component {
     state = {
@@ -20,13 +26,16 @@ export default class SendMessage extends React.Component {
     handleChange = event => this.setState({ message: event.target.value });
 
     render() {
-        return <div>
+        return <div className={'send'}>
             <TextField
                 value={this.state.message}
                 onChange={this.handleChange}
-                multiline={true}
+                multiline
                 name={'message'} />
-            <button onClick={this.send}>Send</button>
+            <FlatButton onClick={this.send} variant="contained" color="primary" href="#contained-buttons">
+                Send
+            </FlatButton>
+
         </div>;
     };
 }

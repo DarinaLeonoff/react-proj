@@ -2,9 +2,10 @@ import React from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
+import Message from './message';
 import MessageList from './message-list';
 import SendMessage from './send';
+import Layout from './Layout';
 
 import '../styles/app.css';
 
@@ -18,7 +19,6 @@ export default class App extends React.Component {
             messages: [],
         }
     }
-
 
     componentDidUpdate() {
         console.log('componentWillUpdate');
@@ -34,9 +34,11 @@ export default class App extends React.Component {
 
 
     render() {
-        return <MuiThemeProvider><main>
-            <MessageList messages={this.state.messages} />
-            <SendMessage send={this.send} />
-        </main> </MuiThemeProvider>;
+        return <MuiThemeProvider>
+            <div className={'page'}>
+                <Layout messages={this.state.messages} />
+                <SendMessage send={this.send} />
+            </div>
+        </MuiThemeProvider>;
     }
 };
