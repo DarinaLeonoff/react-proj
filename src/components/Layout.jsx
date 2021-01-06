@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
         return <><Header chatId={this.props.chatId} />
             <main>
                 <ChatList />
-                <MessageList messages={this.props.messages} />
+                <MessageList messages={this.props.messages} chatId={this.props.chatId} />
             </main></>;
     };
 };

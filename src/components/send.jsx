@@ -18,8 +18,10 @@ export default class SendMessage extends React.Component {
         send: PropTypes.func.isRequired
     };
 
+
+
     send = () => {
-        this.props.send({ message: this.state.message, author: 'me' });
+        this.props.send({ message: this.state.message, author: 'me', });
         this.setState({ message: '' });
     };
 

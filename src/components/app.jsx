@@ -44,8 +44,8 @@ export default class App extends React.Component {
             <div className={'page'}>
                 <BrowserRouter>
                     <Router messages={this.state.messages} />
-                    <SendMessage send={this.send} />
                 </BrowserRouter>
+                <SendMessage send={this.send} />
             </div>
         </MuiThemeProvider>;
     }
