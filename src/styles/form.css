@@ -1,4 +1,19 @@
 .send {
     margin: 0 auto;
-    width: max-content;
+    margin-top: 20px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message {
+    width: 400px;
+    margin-right: 10px;
+}
+
+.button {
+    width: min-content;
 }

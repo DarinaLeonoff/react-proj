@@ -1,11 +1,13 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Message from './message';
 import MessageList from './message-list';
 import SendMessage from './send';
 import Layout from './Layout';
+
+import Router from './pages/Router';
 
 import '../styles/app.css';
 
@@ -18,13 +20,17 @@ export default class App extends React.Component {
             text: 'some text 2',
             messages: [],
         }
-    }
+    };
 
-    componentDidUpdate() {
-        console.log('componentWillUpdate');
-        console.log(this.state.messages.length, this.state.messages.length % 2);
-        if (this.state.messages.length % 2 > 0) {
-            this.setState({ messages: [...this.state.messages, { message: 'i don`t understand you', author: 'bot' }] });
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.messages.length < this.state.messages.length &&
+            this.state.messages[this.state.messages.length - 1].author === 'me') {
+            setTimeout(() =>
+                this.setState({
+                    messages: [...this.state.messages, { message: 'Не приставай ко мне, я робот!', author: 'bot' }]
+                }),
+                1000);
         }
     }
 
@@ -36,8 +42,10 @@ export default class App extends React.Component {
     render() {
         return <MuiThemeProvider>
             <div className={'page'}>
-                <Layout messages={this.state.messages} />
-                <SendMessage send={this.send} />
+                <BrowserRouter>
+                    <Router messages={this.state.messages} />
+                    <SendMessage send={this.send} />
+                </BrowserRouter>
             </div>
         </MuiThemeProvider>;
     }

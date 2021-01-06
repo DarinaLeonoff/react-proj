@@ -7,12 +7,13 @@ import Message from './message';
 
 export default class MessageList extends React.Component {
     static propTypes = {
-        messages: PropTypes.array
+        messages: PropTypes.array,
     };
 
     static defaultProps = {
-        messages: []
+        messages: [],
     };
+
 
     render() {
         return <div className={'messages'}>

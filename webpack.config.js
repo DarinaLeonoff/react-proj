@@ -16,7 +16,10 @@ module.exports = {
     context: path.resolve(__dirname, "src"),
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        historyApiFallback: {
+            index: 'index.html' //при ошибке перехода переходить на страницу по-умолчанию 
+        }
     },
     // rules for converting docs
     module: {
