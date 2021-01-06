@@ -10,7 +10,8 @@ import '../styles/layout.css';
 export default class Layout extends React.Component {
     static propTypes = {
         chatId: PropTypes.number,
-        messages: PropTypes.array
+        messages: PropTypes.array,
+        title: PropTypes.string
     };
 
     static defaultProps = {
@@ -22,7 +23,7 @@ export default class Layout extends React.Component {
         return <><Header chatId={this.props.chatId} />
             <main>
                 <ChatList />
-                <MessageList messages={this.props.messages} chatId={this.props.chatId} />
+                <MessageList messages={this.props.messages} chatId={this.props.chatId} title={this.props.title} />
             </main></>;
     };
 };

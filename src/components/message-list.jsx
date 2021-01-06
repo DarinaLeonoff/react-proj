@@ -8,7 +8,8 @@ import Message from './message';
 export default class MessageList extends React.Component {
     static propTypes = {
         messages: PropTypes.array,
-        chatId: PropTypes.number.isRequired
+        chatId: PropTypes.number.isRequired,
+        title: PropTypes.string
     };
 
     static defaultProps = {
@@ -22,6 +23,7 @@ export default class MessageList extends React.Component {
 
     render() {
         return <div className={'messages'}>
+            <h2>{this.props.title}</h2>
             {this.props.messages.map(({ message, author }, id) => <><Message message={message} author={author} key={`message_${id}`} /><br /><br /></>)}
         </div>;
     }
