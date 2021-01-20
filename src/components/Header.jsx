@@ -7,7 +7,8 @@ import '../styles/Header.css';
 
 export default class Header extends React.Component {
     static propTypes = {
-        chatId: PropTypes.number
+        chatId: PropTypes.number,
+        title: PropTypes.string
     };
     static defaultProps = {
         chatId: 1
@@ -16,7 +17,7 @@ export default class Header extends React.Component {
     render() {
         return <div className='header'>
             <div className='container'>
-                <h1> My chat {this.props.chatId}</h1>
+                <h1> {this.props.title} </h1>
                 <Link to="/profile">
                     <h2>Home</h2>
                 </Link>

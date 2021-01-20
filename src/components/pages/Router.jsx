@@ -21,8 +21,8 @@ export default class Router extends React.Component {
             <Switch>
                 <Route exact path='/' component={Layout} />
                 <Route exact path='/chat/:chatId' render={obj =>
-                    <Layout chatId={obj.match.params.chatId} messages={this.props.messages} />} />
-                <Route exact path='/profile' render={() => <Layout title={'profile '} />} />
+                    <Layout chatId={obj.match.params.chatId} messages={this.props.messages} title={'My chat'} messField={'visible'} />} />
+                <Route exact path='/profile' render={() => <Layout title={'Profile'} messField={'empty'} />} />
             </Switch>
 
         </>;
