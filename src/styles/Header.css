@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    display: flex;
+    background-color: lightblue;
+}
+.container {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
