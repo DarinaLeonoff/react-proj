@@ -25,17 +25,17 @@ export default class App extends React.Component {
     };
 
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('its ok');
-        if (prevState.messages.length < this.state.messages.length &&
-            this.state.messages[this.state.messages.length - 1].author === 'me') {
-            setTimeout(() =>
-                this.setState({
-                    messages: [...this.state.messages, { message: 'Не приставай ко мне, я робот!', author: 'bot' }]
-                }),
-                1000);
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log('its ok');
+    //     if (prevState.messages.length < this.state.messages.length &&
+    //         this.state.messages[this.state.messages.length - 1].author === 'me') {
+    //         setTimeout(() =>
+    //             this.setState({
+    //                 messages: [...this.state.messages, { message: 'Не приставай ко мне, я робот!', author: 'bot' }]
+    //             }),
+    //             1000);
+    //     }
+    // }
 
     // send = objMsg => {
     //     this.setState({ messages: [...this.state.messages, objMsg] });
