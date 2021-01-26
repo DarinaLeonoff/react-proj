@@ -4,4 +4,5 @@ export const sendMesssage = (message, author, chatId) => ({
     message,
     author,
     chatId
-}); 
+});
+

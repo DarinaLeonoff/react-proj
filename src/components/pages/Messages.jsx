@@ -44,8 +44,12 @@ class Messages extends React.Component {
 
         const chats = { ...this.props.chatStore };
         chats[this.props.chatId].messages.push(newMesId);
+        debugger;
         this.setState({ chats: { ...chats } });
     };
+
+
+    //если убрать этот кусок, то бот не отвечает, а если оставить отвечает дважды...
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.messages.length < this.state.messages.length &&

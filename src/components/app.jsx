@@ -1,19 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Provider } from 'react-redux';
-
-// import MessageList from './message-list';
-// import SendMessage from './send';
-// import Layout from './Layout';
-// import Messages from './pages/Messages';
-
+import { BrowserRouter } from 'react-router-dom';
 import Router from './pages/Router';
-import initStore from '../store';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import initStore, { history } from '../store';
+import { PresistGate } from 'redux-persist/integration/react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import '../styles/app.css';
 
+const { store, persistor } = initStore();
 
 export default class App extends React.Component {
     constructor(props) {
@@ -24,31 +20,17 @@ export default class App extends React.Component {
         }
     };
 
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     console.log('its ok');
-    //     if (prevState.messages.length < this.state.messages.length &&
-    //         this.state.messages[this.state.messages.length - 1].author === 'me') {
-    //         setTimeout(() =>
-    //             this.setState({
-    //                 messages: [...this.state.messages, { message: 'Не приставай ко мне, я робот!', author: 'bot' }]
-    //             }),
-    //             1000);
-    //     }
-    // }
-
-    // send = objMsg => {
-    //     this.setState({ messages: [...this.state.messages, objMsg] });
-    // };
-
-
     render() {
         return <MuiThemeProvider>
             <div className={'page'}>
-                <Provider store={initStore()}>
-                    <BrowserRouter>
-                        <Router messages={this.state.messages} />
-                    </BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <ConnectedRouter history={history}>
+                            <BrowserRouter>
+                                <Router messages={this.state.messages} />
+                            </BrowserRouter>
+                        </ConnectedRouter>
+                    </PersistGate>
                 </Provider>
             </div>
         </MuiThemeProvider>;
