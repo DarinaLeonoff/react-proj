@@ -6,7 +6,7 @@ const initState = [
     { message: 'i will not answer, but you can ask...', author: 'bot', id: 2 }
 ];
 
-function messagesReducer(store = initState, action) {
+export default function messagesReducer(store = initState, action) {
 
     switch (action.type) {
         case SEND_MESSAGE:
@@ -17,4 +17,3 @@ function messagesReducer(store = initState, action) {
     }
 
 }
-export default messagesReducer;

@@ -6,7 +6,8 @@ import MessageList from '../message-list';
 import SendMessage from '../send';
 
 import '../../styles/messages.css';
-import { sendMesssage } from '../../store/actions/message';
+import { sendMessage } from '../../store/actions/message';
+
 
 class Messages extends React.Component {
     state = {
@@ -40,30 +41,26 @@ class Messages extends React.Component {
         const newMesId = this.state.messages.length;
         this.setState({ messages: [...this.state.messages, { ...objMsg, id: newMesId }] });
 
-        this.props.sendMesssage(objMsg.message, objMsg.author, this.props.chatId);
+        this.props.sendMessage(objMsg.message, objMsg.author, this.props.chatId);
 
         const chats = { ...this.props.chatStore };
         chats[this.props.chatId].messages.push(newMesId);
-        debugger;
         this.setState({ chats: { ...chats } });
     };
 
-
-    //если убрать этот кусок, то бот не отвечает, а если оставить отвечает дважды...
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.messages.length < this.state.messages.length &&
-            this.state.messages[this.state.messages.length - 1].author === 'me') {
-            setTimeout(() =>
-                this.send({ message: 'Не приставай ко мне, я робот!', author: 'bot' }),
-                1000);
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.messagesStore.length < this.props.messagesStore.length &&
+    //         this.props.messagesStore[this.props.messagesStore.length - 1].author === 'me') {
+    //         setTimeout(
+    //             () => this.send({ message: 'I\'m robot', author: 'bot' }),
+    //             1000);
+    //     }
+    // }
 
     render() {
         return <div className="messanger" >
             <div>
-                <MessageList messages={this.props.messagesStore.filter(({ id }) => this.props.chatStore[this.props.chatId].messages.includes(id))} title={this.props.title} />
+                <MessageList messages={this.props.messagesStore.filter(({ id }) => this.props.chatStore[this.props.chatId].messages.includes(id))} />
                 <SendMessage send={this.send} />
             </div>
         </div>;
@@ -76,7 +73,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = {
-    sendMesssage: sendMesssage
+    sendMessage: sendMessage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);
