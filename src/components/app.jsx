@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import Router from './pages/Router';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
@@ -42,9 +42,7 @@ export default class App extends React.Component {
                 <Provider store={store}>
                     {/* <PersistGate loading={null} persistor={persistor}> */}
                     <ConnectedRouter history={history}>
-                        <BrowserRouter>
-                            <Router messages={this.state.messages} />
-                        </BrowserRouter>
+                        <Router messages={this.state.messages} />
                     </ConnectedRouter>
                     {/* </PersistGate> */}
                 </Provider>
