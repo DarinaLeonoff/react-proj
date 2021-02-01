@@ -1,15 +1,16 @@
 import React from 'react';
-// import { BrowserRouter } from 'react-router-dom';
+
 import Router from './pages/Router';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import initStore, { history } from '../store';
-// import { PresistGate } from 'redux-persist/integration/react';
+import { PersistGate } from 'redux-persist/integration/react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import Menu from './menu';
 import '../styles/app.css';
 
-const { store } = initStore();
+const { store, persistor } = initStore();
 
 export default class App extends React.Component {
     constructor(props) {
@@ -40,11 +41,11 @@ export default class App extends React.Component {
         return <MuiThemeProvider>
             <div className={'page'}>
                 <Provider store={store}>
-                    {/* <PersistGate loading={null} persistor={persistor}> */}
-                    <ConnectedRouter history={history}>
-                        <Router messages={this.state.messages} />
-                    </ConnectedRouter>
-                    {/* </PersistGate> */}
+                    <PersistGate loading={null} persistor={persistor}>
+                        <ConnectedRouter history={history}>
+                            <Router messages={this.state.messages} />
+                        </ConnectedRouter>
+                    </PersistGate>
                 </Provider>
             </div>
         </MuiThemeProvider>;
