@@ -43,24 +43,31 @@ class Messages extends React.Component {
 
         this.props.sendMessage(objMsg.message, objMsg.author, this.props.chatId);
 
-        const chats = { ...this.props.chatStore };
+        const chats = { ...this.state.chats };
         chats[this.props.chatId].messages.push(newMesId);
         this.setState({ chats: { ...chats } });
     };
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevProps.messagesStore.length < this.props.messagesStore.length &&
-    //         this.props.messagesStore[this.props.messagesStore.length - 1].author === 'me') {
-    //         setTimeout(
-    //             () => this.send({ message: 'I\'m robot', author: 'bot' }),
-    //             1000);
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.messagesStore.length < this.props.messagesStore.length &&
+            this.props.messagesStore[this.props.messagesStore.length - 1].author === 'me') {
+            setTimeout(
+                () => this.send({ message: 'I\'m robot', author: 'bot' }),
+                5000
+            );
+        }
+    }
+
+    componentDidMount() {
+        fetch('API/chats.json').then(response => response.json()).then(response => {
+            console.log('response', response);
+        }).catch(() => console.log('err', err));
+    };
 
     render() {
         return <div className="messanger" >
             <div>
-                <MessageList messages={this.props.messagesStore.filter(({ id }) => this.props.chatStore[this.props.chatId].messages.includes(id))} />
+                <MessageList messages={this.props.messagesStore.filter(({ id }) => this.state.chats[this.props.chatId].messages.includes(id))} />
                 <SendMessage send={this.send} />
             </div>
         </div>;

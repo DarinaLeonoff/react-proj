@@ -19,6 +19,9 @@ module.exports = {
         contentBase: './dist',
         historyApiFallback: {
             index: 'index.html' //при ошибке перехода переходить на страницу по-умолчанию 
+            //historyApiFallback: {
+            //index: 'index.html'
+            //},
         }
     },
     // rules for converting docs

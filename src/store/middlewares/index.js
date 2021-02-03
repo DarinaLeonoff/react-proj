@@ -1,2 +1,8 @@
+import { apiMiddleware } from 'redux-api-middleware';
+
 import messageMiddleware from './messages';
-export default [messageMiddleware];
+
+export default [
+    apiMiddleware,
+    messageMiddleware
+];
