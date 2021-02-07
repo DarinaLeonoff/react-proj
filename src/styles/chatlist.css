@@ -1,0 +1,25 @@
+.chats {
+    width: 20%;
+}
+
+.chat {
+    max-height: 50px;
+}
+
+.block {
+    display: flex;
+    align-items: center;
+}
+
+.chat-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.chat-foto {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: darkblue;
+    margin-right: 20px;
+}
