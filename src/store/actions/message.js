@@ -8,12 +8,28 @@ export const sendMessage = (message, author, chatId) => ({
     chatId
 });
 
+export const SET_MESSAGES = 'SET_MESSAGES';
+export const setMessages = messages => ({
+    type: SET_MESSAGES,
+    messages,
+});
+
 export const START_MESSAGES_LOADING = 'START_MESSAGES_LOADING';
 export const SUCCESS_MESSAGES_LOADING = 'SUCCESS_MESSAGES_LOADING';
 export const ERROR_MESSAGES_LOADING = 'ERROR_MESSAGES_LOADING';
 
-// export const loadMessages = () => ({
-//     [RSAA]: {
-//         endpoint
-//     }
-// })
+export const loadMessages = () => ({
+    [RSAA]: {
+        endpoint: 'api/chats.json',
+        method: 'GET',
+        types: [
+            START_MESSAGES_LOADING,
+            {
+                type: SUCCESS_MESSAGES_LOADING,
+                payload: (action, state, res) => getJSON(res).then(json => json)
+            },
+            ERROR_MESSAGES_LOADING
+        ]
+
+    }
+})

@@ -1,0 +1,32 @@
+{
+    "1": {
+        "name": "Chat 1",
+        "messages": [
+            {
+                "message": "hi! You are in 1st chat.",
+                "author": "bot",
+                "id": 0
+            },
+            {
+                "message": "i will not answer, but you can ask...",
+                "author": "bot",
+                "id": 2
+            }
+        ]
+    },
+    "2": {
+        "name": "Chat 2",
+        "messages": [
+            {
+                "message": "hi! You are in 2nd chat.",
+                "author": "bot",
+                "id": 1
+            },
+            {
+                "message": "i will not answer, but you can ask...",
+                "author": "bot",
+                "id": 2
+            }
+        ]
+    }
+}

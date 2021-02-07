@@ -1,4 +1,4 @@
-import { CHAT } from '../actions/chat';
+import { SUCCESS_CHATS_LOADING, START_CHATS_LOADING, ERROR_CHATS_LOADING } from '../actions/chat';
 
 const initChats = {
     1: {
@@ -14,9 +14,10 @@ const initChats = {
 function chatReducer(store = initChats, action) {
 
     switch (action.type) {
-        case CHAT:
-            console.log('its ok');
-            return;
+        case SUCCESS_CHATS_LOADING:
+            return [...action.payload.entities.chats];
+        case START_CHATS_LOADING:
+        case ERROR_CHATS_LOADING:
         default:
             return store;
     }

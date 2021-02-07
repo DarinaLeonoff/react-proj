@@ -6,7 +6,8 @@ import MessageList from '../message-list';
 import SendMessage from '../send';
 
 import '../../styles/messages.css';
-import { sendMessage } from '../../store/actions/message';
+import { sendMessage, setMessages, loadMessages } from '../../store/actions/message';
+import { loadChats } from '../../store/actions/chat'
 
 
 class Messages extends React.Component {
@@ -48,20 +49,54 @@ class Messages extends React.Component {
         this.setState({ chats: { ...chats } });
     };
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.messagesStore.length < this.props.messagesStore.length &&
-            this.props.messagesStore[this.props.messagesStore.length - 1].author === 'me') {
-            setTimeout(
-                () => this.send({ message: 'I\'m robot', author: 'bot' }),
-                5000
-            );
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.messagesStore.length < this.props.messagesStore.length &&
+    //         this.props.messagesStore[this.props.messagesStore.length - 1].author === 'me') {
+    //         setTimeout(
+    //             () => this.send({ message: 'I\'m robot', author: 'bot' }),
+    //             5000
+    //         );
+    //     }
+    // }
 
     componentDidMount() {
-        fetch('API/chats.json').then(response => response.json()).then(response => {
-            console.log('response', response);
-        }).catch(() => console.log('err', err));
+        this.props.loadChats();
+        // fetch('api/chats.json').then(response => response.json()).then(response => {
+        //     console.log('response', response);
+
+        //     let chats = {};
+        //     let messages = [];
+
+        //     for (let id in response) {
+        //         chats[parseInt(id)] = {
+        //             name: response[id].name,
+        //             messages: [...response[id].messages.map(item => parseInt(item.id))]
+        //         };
+        //         messages.push(...response[id].messages.map(item => ({ ...item, id: parseInt(item.id) })));
+        //     }
+        //     this.props.setMessages(messages);
+        //     this.setState({ chats: { ...chats } });
+
+        // }).catch(err => console.log('err', err));
+
+        // (async () => {
+        //     try {
+        //         let response = await fetch('api/chats.json'); //чтобы response возвращал значение, а не функцию. первый then
+        //         response = await response.json(); // второй then
+        //         for (let id in response) {
+        //             chats[parseInt(id)] = {
+        //                 name: response[id].name,
+        //                 messages: [...response[id].messages.map(item => parseInt(item.id))]
+        //             };
+        //             messages.push(...response[id].messages.map(item => ({ ...item, id: parseInt(item.id) })));
+        //         };
+        //         this.props.setMessages(messages);
+        //         this.setState({ chats: { ...chats } });
+        //     }
+        //     catch (e) {
+        //         console.log('try -> chatch', e);
+        //     }
+        // })();
     };
 
     render() {
@@ -80,7 +115,10 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = {
-    sendMessage: sendMessage
+    sendMessage: sendMessage,
+    setMessages: setMessages,
+    loadMessages: loadMessages,
+    loadChats: loadChats
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

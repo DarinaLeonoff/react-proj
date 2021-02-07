@@ -8,6 +8,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Menu from './menu';
+import InstallPopUp from './installPopUp';
+import PushNotification from './PushNotification';
 import '../styles/app.css';
 
 const { store, persistor } = initStore();
@@ -43,7 +45,9 @@ export default class App extends React.Component {
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
                         <ConnectedRouter history={history}>
+                            <PushNotification />
                             <Router messages={this.state.messages} />
+                            <InstallPopUp />
                         </ConnectedRouter>
                     </PersistGate>
                 </Provider>
